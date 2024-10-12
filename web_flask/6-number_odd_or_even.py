@@ -43,13 +43,13 @@ def num_route_template(n):
     return render_template("5-number.html", num=n)
 
 
-@app.route('/number_odd_or_even/<int:n>')
+@app.route('/number_odd_or_even/<int:n>', strict_slashes=False)
 def num_odd_or_even(n):
     """Comment"""
-    even_or_odd = "even" if n%2 == 0 else "odd"
+    even_or_odd = "even" if n % 2 == 0 else "odd"  # Added spaces around %
     values = {
         "num": n,
-	"even_or_odd": even_or_odd
+        "even_or_odd": even_or_odd
     }
     return render_template('6-number_odd_or_even.html', values=values)
 
