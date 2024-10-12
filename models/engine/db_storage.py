@@ -11,6 +11,8 @@ from models.place import Place
 from models.review import Review
 from models.amenity import Amenity
 
+lista = [State, City, User, Place, Review, Amenity]
+
 
 class DBStorage:
     """ create tables in environmental"""
@@ -45,7 +47,6 @@ class DBStorage:
                 key = "{}.{}".format(type(elem).__name__, elem.id)
                 dic[key] = elem
         else:
-            lista = [State, City, User, Place, Review, Amenity]
             for clase in lista:
                 query = self.__session.query(clase)
                 for elem in query:
@@ -68,6 +69,13 @@ class DBStorage:
         """
         if obj:
             self.session.delete(obj)
+    
+    def get(self, cls, id):
+        """Retrieve an object based on class and id."""
+        if cls in lista:
+            return self.__session.query(cls).get(id)
+        return None
+
 
     def reload(self):
         """configuration
