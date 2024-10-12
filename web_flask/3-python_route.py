@@ -18,11 +18,12 @@ def hbnb():
     return "HBNB"
 
 
-@app.route('/c/<text>')
+@app.route('/c/<text>', strict_slashes=False)
 def text_var(text):
     """Comment"""
     no_underscore = text.replace('_', ' ')
     return "C {}".format(no_underscore)
+
 
 @app.route('/python', strict_slashes=False)
 @app.route('/python/<text>', strict_slashes=False)
